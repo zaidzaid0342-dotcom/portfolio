@@ -46,7 +46,7 @@
 //           </h2>
           
 //           <p className="text-gray-400 max-w-xl text-lg leading-relaxed pt-4">
-//             I specialize in crafting **secure, innovative, and high-performance applications** using the **MERN stack**. My focus is leveraging emerging technologies like **Generative AI** to build scalable and efficient solutions that deliver tangible business value.
+//             I specialize in crafting secure, innovative, and high-performance applications using the MERN stack. My focus is leveraging emerging technologies like Generative AI to build scalable and efficient solutions that deliver tangible business value.
 //           </p>
           
 //           {/* CTA Buttons with high contrast and hover effects */}
@@ -167,7 +167,7 @@ export default function Hero() {
           </h2>
           
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed pt-4">
-            I specialize in crafting **secure, innovative, and high-performance applications** using the **MERN stack**. My focus is leveraging emerging technologies like **Generative AI** to build scalable and efficient solutions that deliver tangible business value.
+            I specialize in crafting secure, innovative, and high-performance applications using the MERN stack. My focus is leveraging emerging technologies like Generative AI to build scalable and efficient solutions that deliver tangible business value.
           </p>
           
           {/* CTA Buttons with high contrast and hover effects */}

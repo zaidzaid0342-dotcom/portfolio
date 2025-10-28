@@ -31,12 +31,12 @@ export default function Contact() {
                 <div className="bg-indigo-900/50 p-3 rounded-lg mr-4 group-hover:bg-teal-900/30 transition-colors duration-300">
                   <Linkedin className="w-5 h-5 text-teal-400" />
                 </div>
-                <div>
+                {/* <div>
                   <p className="text-gray-400 text-sm">LinkedIn</p>
                   <a href="https://www.linkedin.com/in/mohammed-zaid-089552379/" target="_blank" rel="noreferrer" className="text-teal-300 hover:text-teal-200 transition-colors">
                     mohammed-zaid
                   </a>
-                </div>
+                </div> */}
               </div>
               
               <div className="flex items-start p-4 bg-indigo-900/20 rounded-xl border border-indigo-700/30 hover:border-teal-400/50 transition-all duration-300 group">

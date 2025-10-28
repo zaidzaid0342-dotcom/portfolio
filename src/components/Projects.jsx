@@ -3,14 +3,13 @@ import ezeetrip from "../assets/projects/Screenshot (189).png"
 import cafe from "../assets/projects/Screenshot (191).png"
 import estate from "../assets/projects/Screenshot (192).png"
 import wellness from "../assets/projects/Screenshot (194).png"
+import hospital from "../assets/projects/Screenshot (197).png" // <-- add hospital image file
 
 export default function Projects() {
   const projectsRef = useRef(null);
 
   useEffect(() => {
-    // Make sure the ref is set
     if (!projectsRef.current) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
@@ -21,16 +20,10 @@ export default function Projects() {
       },
       { threshold: 0.1 }
     );
-
-    // Get all elements with the animate-on-scroll class
     const elements = projectsRef.current.querySelectorAll('.animate-on-scroll');
-    
-    // Observe each element
     elements.forEach(el => {
       observer.observe(el);
     });
-
-    // Cleanup
     return () => {
       elements.forEach(el => {
         observer.unobserve(el);
@@ -66,6 +59,13 @@ export default function Projects() {
       link: '#',
       tech: ['MERN', 'JWT'],
       image: wellness
+    },
+    {
+      title: 'Hospital Appointment Software',
+      desc: 'Complete hospital appointment booking system with admin dashboard, doctor/patient portals, real-time status, and secure authentication.',
+      link: 'https://hospital-4tj4.vercel.app', 
+      tech: ['React.js', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+      image: hospital
     }
   ];
 
@@ -76,25 +76,19 @@ export default function Projects() {
         <div className="absolute top-1/3 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
       </div>
-      
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-16">
           <div className="flex items-center mb-6">
-            <div className=" bg-gradient-to-r from-teal-400 to-blue-500 mr-4 rounded-full"></div>
+            <div className="bg-gradient-to-r from-teal-400 to-blue-500 mr-4 rounded-full"></div>
             <h2 className="text-4xl md:text-5xl font-bold text-white">Featured Projects</h2>
           </div>
-          
           <p className="text-gray-300 text-lg max-w-3xl">
             Highlights of full-stack applications developed, showcasing robust CRUD operations, secure authentication, and optimized database schemas.
           </p>
         </div>
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projectList.map((project, index) => (
-            <div 
-              key={index} 
-              className="group"
-            >
+            <div key={index} className="group">
               <div className="bg-gradient-to-br from-gray-800 to-gray-900/80 p-1 rounded-2xl shadow-xl h-full">
                 <div className="bg-gray-900/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 h-full flex flex-col">
                   {/* Project Image */}
@@ -105,7 +99,6 @@ export default function Projects() {
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent"></div>
-                    
                     {/* Project Link Overlay */}
                     <a 
                       href={project.link} 
@@ -119,7 +112,6 @@ export default function Projects() {
                       </div>
                     </a>
                   </div>
-                  
                   {/* Project Content */}
                   <div className="p-6 flex-grow flex flex-col">
                     <div className="flex justify-between items-start mb-4">
@@ -135,9 +127,7 @@ export default function Projects() {
                         <i data-lucide="external-link" className="w-5 h-5"></i>
                       </a>
                     </div>
-                    
                     <p className="text-gray-300 mb-5 flex-grow">{project.desc}</p>
-                    
                     {/* Tech Tags */}
                     <div className="flex flex-wrap gap-2 mb-6">
                       {project.tech.map((tech, techIndex) => (
@@ -149,7 +139,6 @@ export default function Projects() {
                         </span>
                       ))}
                     </div>
-                    
                     {/* View Project Button */}
                     <a 
                       href={project.link} 
@@ -166,7 +155,6 @@ export default function Projects() {
             </div>
           ))}
         </div>
-        
         <div className="mt-16 text-center">
           <a 
             href="#" 

@@ -162,8 +162,8 @@ export default function Hero() {
           </h1>
           
           {/* Dynamic Role Text with a slight offset */}
-          <h2 className="text-3xl sm:text-4xl text-gray-400 font-extralight pt-2 border-l-4 border-teal-500/50 pl-4 inline-block">
-            <span className="font-medium text-white">Full Stack MERN Developer</span> | Generative AI Enthusiast
+          <h2 className="text-3xl sm:text-4xl text-gray-400 font-extralight pt-2  border-teal-500/50 pl-4 inline-block">
+            <span className="font-medium text-white">Full Stack MERN Developer</span> 
           </h2>
           
           <p className="text-gray-400 max-w-2xl mx-auto text-lg leading-relaxed pt-4">

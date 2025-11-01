@@ -9,7 +9,9 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoSliding, setIsAutoSliding] = useState(true);
   const carouselRef = useRef(null);
+  const autoSlideInterval = useRef(null);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -37,12 +39,44 @@ export default function Projects() {
     setIsVisible(true);
   }, []);
 
+  // Auto-slide functionality
+  useEffect(() => {
+    if (isAutoSliding) {
+      autoSlideInterval.current = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex === projectList.length - 1 ? 0 : prevIndex + 1));
+      }, 5000);
+    }
+
+    return () => {
+      if (autoSlideInterval.current) {
+        clearInterval(autoSlideInterval.current);
+      }
+    };
+  }, [isAutoSliding]);
+
+  const startAutoSlide = () => {
+    setIsAutoSliding(true);
+  };
+
+  const stopAutoSlide = () => {
+    setIsAutoSliding(false);
+    if (autoSlideInterval.current) {
+      clearInterval(autoSlideInterval.current);
+    }
+  };
+
   const nextProject = () => {
+    stopAutoSlide();
     setCurrentIndex((prevIndex) => (prevIndex === projectList.length - 1 ? 0 : prevIndex + 1));
+    // Restart auto-slide after manual navigation
+    setTimeout(startAutoSlide, 10000);
   };
 
   const prevProject = () => {
+    stopAutoSlide();
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? projectList.length - 1 : prevIndex - 1));
+    // Restart auto-slide after manual navigation
+    setTimeout(startAutoSlide, 10000);
   };
 
   const projectList = [
@@ -155,7 +189,11 @@ export default function Projects() {
         </div>
         
         {/* Project Carousel */}
-        <div className="relative">
+        <div 
+          className="relative"
+          onMouseEnter={stopAutoSlide}
+          onMouseLeave={startAutoSlide}
+        >
           {/* Carousel Container */}
           <div className="overflow-hidden rounded-2xl">
             <div 
@@ -216,7 +254,11 @@ export default function Projects() {
             {projectList.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => {
+                  stopAutoSlide();
+                  setCurrentIndex(index);
+                  setTimeout(startAutoSlide, 10000);
+                }}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex 
                     ? 'bg-teal-500 w-8' 
@@ -228,9 +270,9 @@ export default function Projects() {
           </div>
 
           {/* Carousel Controls */}
-          <button
+          {/* <button
             onClick={prevProject}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-gray-800/80 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-gray-800/80 hover:bg-teal-600/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10 hover:scale-110"
             aria-label="Previous project"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,13 +281,13 @@ export default function Projects() {
           </button>
           <button
             onClick={nextProject}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-12 bg-gray-800/80 hover:bg-gray-700 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10"
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 md:translate-x-12 bg-gray-800/80 hover:bg-teal-600/80 text-white p-3 rounded-full shadow-lg transition-all duration-300 z-10 hover:scale-110"
             aria-label="Next project"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-          </button>
+          </button> */}
         </div>
         
         <div className={`mt-16 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '500ms' }}>
